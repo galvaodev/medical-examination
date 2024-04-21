@@ -26,3 +26,15 @@ export const Select = styled.div`
     }
 `;
 
+export const ErrorMessage = styled.span`
+  color: ${({ theme }) => theme.colors.red100};
+  font-weight: 700;
+  margin-left: auto;
+  font-size: 0.875rem;
+  white-space: nowrap;
+
+  @media screen and (max-width: ${({theme}) => theme.screens.md}){
+    font-size: 0.75rem;
+  }
+`;
+

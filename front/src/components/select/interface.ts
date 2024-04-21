@@ -7,5 +7,7 @@ export interface OptionType {
 
 export interface ISelectProps {
   options: OptionType[];
+  error?: string;
+  ref?: any;
   handleChange: (selectedOption: OptionType | null) => void;
 }

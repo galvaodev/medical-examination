@@ -2,40 +2,26 @@ import React from 'react';
 import InputMask from 'react-input-mask';
 import { inputProps } from './interface';
 import * as S from './styles';
+import useInput from './useInput';
 
 const Input: React.FC<inputProps> = ({
   onChange,
-  value,
   label,
   mask,
   name,
   accept,
+  maxLength,
+  error,
   type = 'input',
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
+  const { handleChange } = useInput(onChange);
 
-    if (files && files.length > 0) {
-      const file = files[0];
-      const reader = new FileReader();
-
-      reader.onload = () => {
-        const base64String = reader.result as string;
-        onChange(base64String.split(',')[1], e.target.name);
-      };
-
-      reader.readAsDataURL(file);
-    } else {
-      onChange(e.target.value, e.target.name);
-    }
-  };
   return (
     <S.InputContainer>
       <S.WrapperInput>
         {mask ? (
           <InputMask
             mask={mask}
-            value={value}
             onChange={handleChange}
             placeholder={mask}
             name={name}
@@ -44,7 +30,6 @@ const Input: React.FC<inputProps> = ({
           </InputMask>
         ) : type === 'file' ? (
           <S.InputStyled
-            value={value}
             placeholder={label}
             name={name}
             onChange={handleChange}
@@ -53,13 +38,14 @@ const Input: React.FC<inputProps> = ({
           />
         ) : (
           <S.InputStyled
-            value={value}
             placeholder={label}
             name={name}
+            maxLength={maxLength}
             onChange={handleChange}
             as={type}
           />
         )}
+        <S.ErrorMessage>{error}</S.ErrorMessage>
       </S.WrapperInput>
     </S.InputContainer>
   );

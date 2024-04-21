@@ -52,7 +52,7 @@ export const InputStyled = styled.input.attrs(({ type }) => ({
     font-size: 0.75rem;
     margin-left: 0.5rem;
   }
-`
+`;
 
 export const ErrorMessage = styled.span`
   color: ${({ theme }) => theme.colors.red100};
@@ -65,7 +65,7 @@ export const ErrorMessage = styled.span`
   @media screen and (max-width: ${({theme}) => theme.screens.md}){
     font-size: 0.75rem;
   }
-`
+`;
 
 export const SearchButton = styled.button<SearchButtonProps>`
   display: flex;
@@ -95,4 +95,4 @@ export const SearchButton = styled.button<SearchButtonProps>`
     width: 5.25rem;
     height: 2.875rem;
   }
-`
+`;

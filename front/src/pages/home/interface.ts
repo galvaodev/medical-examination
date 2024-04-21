@@ -3,10 +3,10 @@ export interface OptionType {
   value: string;
 }
 
-export type FormData = {
-  name?: string;
-  description?: string;
-  exame?: string;
-  date?: string;
-  file?: File;
+export type FormDataProps = {
+  name: string;
+  description: string;
+  exam: string;
+  date: Date;
+  file: string ;
 };

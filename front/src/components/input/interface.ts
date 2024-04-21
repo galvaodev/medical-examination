@@ -1,5 +1,5 @@
 export type inputProps = {
-  error?: boolean;
+  error?: string;
   label?: string;
   mask?: string;
   onChange: (value: string, name: string, files?: FileList | null) => void;
@@ -7,4 +7,6 @@ export type inputProps = {
   type?: string;
   accept?: string;
   name?: string;
+  ref?: any;
+  maxLength?: number;
 };
