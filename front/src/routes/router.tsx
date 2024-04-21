@@ -1,12 +1,14 @@
-import React from 'react';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import Exam from 'pages/exames';
 import Home from 'pages/home';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" Component={Home} />
+        <Route path="/exames" Component={Exam} />
       </Routes>
     </BrowserRouter>
   );

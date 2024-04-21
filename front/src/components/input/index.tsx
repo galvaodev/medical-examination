@@ -8,8 +8,27 @@ const Input: React.FC<inputProps> = ({
   value,
   label,
   mask,
+  name,
+  accept,
   type = 'input',
 }) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+
+    if (files && files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        const base64String = reader.result as string;
+        onChange(base64String.split(',')[1], e.target.name);
+      };
+
+      reader.readAsDataURL(file);
+    } else {
+      onChange(e.target.value, e.target.name);
+    }
+  };
   return (
     <S.InputContainer>
       <S.WrapperInput>
@@ -17,16 +36,27 @@ const Input: React.FC<inputProps> = ({
           <InputMask
             mask={mask}
             value={value}
-            onChange={(e) => onChange(e.target.value)}
+            onChange={handleChange}
             placeholder={mask}
+            name={name}
           >
             {(inputProps: any) => <S.InputStyled {...inputProps} type="text" />}
           </InputMask>
+        ) : type === 'file' ? (
+          <S.InputStyled
+            value={value}
+            placeholder={label}
+            name={name}
+            onChange={handleChange}
+            type={type}
+            accept={accept}
+          />
         ) : (
           <S.InputStyled
             value={value}
             placeholder={label}
-            onChange={(e) => onChange(e.target.value)}
+            name={name}
+            onChange={handleChange}
             as={type}
           />
         )}
