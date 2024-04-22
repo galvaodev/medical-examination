@@ -9,5 +9,7 @@
     "strictFunctionTypes": true
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/node_modules/*"]
+  "exclude": ["node_modules", "**/node_modules/*"],
+  "jsx": "react",
+  "esModuleInterop": true
 }

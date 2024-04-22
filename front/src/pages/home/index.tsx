@@ -54,17 +54,20 @@ const Home: React.FC = () => {
           onChange={changeInput}
           label="Nome"
           name="name"
+          data-testid="name-input"
           error={errors?.name?.message}
         />
         <SelectComponent
           handleChange={handleChange}
           options={options}
+          data-testid="exam-select"
           error={errors?.exam?.message}
         />
         <Input
           onChange={changeInput}
           mask="99/99/9999"
           name="date"
+          data-testid="date-input"
           error={errors?.date?.message}
         />
         <Input
@@ -72,6 +75,7 @@ const Home: React.FC = () => {
           label="Descrição"
           type="textarea"
           name="description"
+          data-testid="description-input"
           maxLength={150}
         />
         <Input
@@ -81,8 +85,13 @@ const Home: React.FC = () => {
           name="file"
           error={errors?.file?.message}
           accept="image/*"
+          data-testid="file-input"
         />
-        {isLoading && <Typhograph size={20}>Carregando...</Typhograph>}
+        {isLoading && (
+          <Typhograph size={20} data-testid="loading">
+            Carregando...
+          </Typhograph>
+        )}
         <Button type="submit" name="Enviar" />
       </S.Form>
       <ToastContainer />
